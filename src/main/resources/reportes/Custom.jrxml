@@ -1,0 +1,264 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Custom" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2da7a761-e16f-4edc-9227-3397d480b61d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EmpleadoDB"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle backcolor="#FBFDFF">
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<dataset name="TableDataSet" uuid="fb301ad6-d763-4788-9821-41f2be8f95a8">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EmpleadoDB"/>
+		<query language="SQL"><![CDATA[SELECT concat(nombre, ' ',  apellido) as fullName, descripcion
+FROM empleados.empleado
+	INNER JOIN empleados.area ON 
+	 empleados.empleado.area = empleados.area.id
+	WHERE empleados.empleado.estado = 'A']]></query>
+		<field name="fullName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fullName"/>
+			<property name="com.jaspersoft.studio.field.label" value="fullName"/>
+		</field>
+		<field name="descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="area"/>
+		</field>
+	</dataset>
+	<query language="SQL"><![CDATA[SELECT empleados.empleado.nombre,
+	empleados.empleado.codigo,
+	empleados.empleado.apellido,
+	empleados.empleado.area,
+	empleados.empleado.estado,
+	empleados.area.id,
+	empleados.area.descripcion
+FROM empleados.empleado
+	INNER JOIN empleados.area ON 
+	 empleados.empleado.area = empleados.area.id]]></query>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleado"/>
+	</field>
+	<field name="codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleado"/>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellido"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleado"/>
+	</field>
+	<field name="area" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="area"/>
+		<property name="com.jaspersoft.studio.field.label" value="area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleado"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estado"/>
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="empleado"/>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="area"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="area"/>
+	</field>
+	<background height="802" splitType="Stretch"/>
+	<title height="79" splitType="Stretch"/>
+	<pageHeader height="71">
+		<element kind="component" uuid="823cf78c-fa64-438b-8374-ce49f9127548" x="230" y="10" width="320" height="60">
+			<component kind="table">
+				<datasetRun uuid="81df759b-f13d-4271-b80f-6b21403c69fc" subDataset="TableDataSet">
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				</datasetRun>
+				<column kind="single" uuid="12deaf13-ea6c-4fa6-92f3-7bfea482e71c" width="100">
+					<columnHeader height="20" rowSpan="1" style="Table_CH">
+						<element kind="staticText" uuid="69d31fd9-fdff-4d2c-8257-1480142c1a36" x="0" y="0" width="100" height="20" hTextAlign="Center" vTextAlign="Middle">
+							<text><![CDATA[Empleado]]></text>
+						</element>
+					</columnHeader>
+					<detailCell height="30" style="Table_TD">
+						<element kind="textField" uuid="51f8d451-bf4b-41b2-9422-6df2cb777a12" x="0" y="0" width="100" height="30" vTextAlign="Middle">
+							<expression><![CDATA[$F{fullName}]]></expression>
+						</element>
+					</detailCell>
+					<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+				</column>
+				<column kind="single" uuid="61d11cfc-9b0f-47ea-9947-58d4e4274c13" width="120">
+					<columnHeader height="20" rowSpan="1" style="Table_CH">
+						<element kind="staticText" uuid="7f31a289-7e2a-4f76-bf3f-36dfd306febf" x="0" y="0" width="120" height="20" hTextAlign="Center" vTextAlign="Middle">
+							<text><![CDATA[Área]]></text>
+						</element>
+					</columnHeader>
+					<detailCell height="30" style="Table_TD">
+						<element kind="textField" uuid="b05b309d-5f47-4d77-9bc9-9dc3d6929963" x="0" y="0" width="120" height="30" vTextAlign="Middle">
+							<expression><![CDATA[$F{descripcion}]]></expression>
+						</element>
+					</detailCell>
+					<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+				</column>
+				<column kind="single" uuid="0491928b-a638-42a7-80d4-0c71c02c6474" width="100">
+					<columnHeader height="20" rowSpan="1" style="Table_CH">
+						<element kind="staticText" uuid="ee6a2f53-4aef-4c1f-9e55-3de21b12204c" x="0" y="0" width="100" height="20" hTextAlign="Center" vTextAlign="Middle">
+							<text><![CDATA[Identificación]]></text>
+						</element>
+					</columnHeader>
+					<detailCell height="30" style="Table_TD">
+						<element kind="component" uuid="0878a1bb-2e66-4607-85a8-2c8e226cf375" x="0" y="0" width="100" height="30">
+							<component kind="barcode4j:QRCode">
+								<codeExpression><![CDATA[$F{fullName} + "|" + $F{descripcion}]]></codeExpression>
+							</component>
+						</element>
+					</detailCell>
+					<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+				</column>
+			</component>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+			<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+			<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+			<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+		</element>
+		<element kind="component" uuid="802b741c-e9ab-4b21-9cd4-779515970dc1" x="20" y="30" width="140" height="20">
+			<component kind="list">
+				<datasetRun uuid="463dfa13-13a5-416b-ae61-524ca00f553d" subDataset="TableDataSet">
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				</datasetRun>
+				<contents height="20" width="140">
+					<element kind="textField" uuid="6c32e3e2-b778-47e9-946b-df8a9e678880" x="0" y="0" width="100" height="20">
+						<expression><![CDATA[$F{fullName}]]></expression>
+					</element>
+				</contents>
+			</component>
+		</element>
+	</pageHeader>
+	<summary height="179" splitType="Stretch">
+		<element kind="crosstab" uuid="2c8335ba-7e08-467e-9661-793eab548925" x="50" y="-1" width="470" height="180">
+			<dataset/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+			<property name="com.jaspersoft.studio.crosstab.style.header" value="Crosstab_CH"/>
+			<property name="com.jaspersoft.studio.crosstab.style.group" value="Crosstab_CG"/>
+			<property name="com.jaspersoft.studio.crosstab.style.total" value="Crosstab_CT"/>
+			<property name="com.jaspersoft.studio.crosstab.style.detail" value="Crosstab_CD"/>
+			<rowGroup name="nombre" totalPosition="End" width="60">
+				<bucket class="java.lang.String">
+					<expression><![CDATA[$F{nombre}]]></expression>
+				</bucket>
+				<header mode="Opaque" style="Crosstab_CH">
+					<element kind="textField" uuid="fbf77477-e0fd-47f6-80c5-84010de2637d" x="0" y="0" width="60" height="20">
+						<expression><![CDATA[$V{nombre}]]></expression>
+					</element>
+				</header>
+				<totalHeader mode="Opaque" style="Crosstab_CT">
+					<element kind="staticText" uuid="5d04c1e8-83c3-49c4-b336-718ebf0ffbe4" x="0" y="0" width="60" height="20" forecolor="#FFFFFF">
+						<text><![CDATA[Total nombre]]></text>
+					</element>
+				</totalHeader>
+			</rowGroup>
+			<columnGroup name="descripcion" totalPosition="End" height="20">
+				<bucket class="java.lang.String">
+					<expression><![CDATA[$F{descripcion}]]></expression>
+				</bucket>
+				<header mode="Opaque" style="Crosstab_CH">
+					<element kind="textField" uuid="2e3f0631-20fa-46de-81d7-a076fb355e84" x="0" y="0" width="60" height="20">
+						<expression><![CDATA[$V{descripcion}]]></expression>
+					</element>
+				</header>
+				<totalHeader mode="Opaque" style="Crosstab_CT">
+					<element kind="staticText" uuid="c8138d36-5156-4ef9-bb6d-62d647020ff2" x="0" y="0" width="60" height="20" forecolor="#FFFFFF">
+						<text><![CDATA[Total descripcion]]></text>
+					</element>
+				</totalHeader>
+			</columnGroup>
+			<measure name="nombre_MEASURE" calculation="Count" class="java.lang.Integer">
+				<expression><![CDATA[$F{nombre}]]></expression>
+			</measure>
+			<cell width="60" height="20">
+				<contents mode="Opaque" style="Crosstab_CD">
+					<element kind="textField" uuid="7ac5b085-8e58-4e74-9fae-c859c6505c1a" x="0" y="0" width="60" height="20">
+						<expression><![CDATA[$V{nombre_MEASURE}]]></expression>
+					</element>
+				</contents>
+			</cell>
+			<cell width="60" height="20" columnTotalGroup="descripcion">
+				<contents mode="Opaque" style="Crosstab_CT">
+					<element kind="textField" uuid="c519e733-7c7e-42d8-9424-10c8c6978744" x="0" y="0" width="60" height="20" forecolor="#FFFFFF">
+						<expression><![CDATA[$V{nombre_MEASURE}]]></expression>
+					</element>
+				</contents>
+			</cell>
+			<cell width="60" height="20" rowTotalGroup="nombre">
+				<contents mode="Opaque" style="Crosstab_CT">
+					<element kind="textField" uuid="a845d1f2-a629-47d6-8edc-6738639778dc" x="0" y="0" width="60" height="20" forecolor="#FFFFFF">
+						<expression><![CDATA[$V{nombre_MEASURE}]]></expression>
+					</element>
+				</contents>
+			</cell>
+			<cell width="60" height="20" rowTotalGroup="nombre" columnTotalGroup="descripcion">
+				<contents mode="Opaque" style="Crosstab_CT">
+					<element kind="textField" uuid="bc0085b9-8168-4193-9745-b7eafe3d4aad" x="0" y="0" width="60" height="20" forecolor="#FFFFFF">
+						<expression><![CDATA[$V{nombre_MEASURE}]]></expression>
+					</element>
+				</contents>
+			</cell>
+		</element>
+	</summary>
+</jasperReport>

@@ -1,0 +1,43 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Grafico" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb8389d7-3776-4f67-a946-891369c1dd54">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZW1wbGVhZG9zLmVtcGxlYWRvIEFTICwyNTEsOTcsYjdlZWFhYjktYTllZS00N2IyLWI4YTUtODU1&#xa;ZjJmNTI0NDczO2VtcGxlYWRvcy5hcmVhIEFTICw1Niw2NCxmMmRhYzgzNC0xNmU1LTQ2NmMtYWUz&#xa;My01MDhkZTIxMThlMjI7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="EmpleadoDB"/>
+	<query language="SQL"><![CDATA[SELECT descripcion, count(codigo) as total
+FROM empleados.empleado
+	INNER JOIN empleados.area ON 
+	 empleados.empleado.area = empleados.area.id
+	 where empleados.empleado.estado = 'A'
+group by descripcion]]></query>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="area"/>
+	</field>
+	<field name="total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch"/>
+	<pageHeader height="226" splitType="Stretch">
+		<element kind="chart" chartType="pie" uuid="a4856655-b12f-4d98-9b19-29a691545fdd" x="80" y="26" width="486" height="200" evaluationTime="Report">
+			<dataset kind="pie">
+				<series>
+					<keyExpression><![CDATA[$F{descripcion}]]></keyExpression>
+					<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					<labelExpression><![CDATA[$F{descripcion}]]></labelExpression>
+				</series>
+			</dataset>
+			<plot>
+				<itemLabel/>
+			</plot>
+		</element>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch"/>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
